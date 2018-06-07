@@ -1,4 +1,4 @@
-package cn.bytecode;
+package cn.bytecode.leetcode.add_two_numbers;
 
 public class AddTwoNumbers {
 
@@ -51,5 +51,14 @@ public class AddTwoNumbers {
         }
 
         return listNode;
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
     }
 }
