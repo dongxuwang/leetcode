@@ -1,10 +1,28 @@
+/**
+  * https://leetcode.com/problems/two-sum/
+  *
+  * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+  *
+  * You may assume that each input would have exactly one solution, and you may not use the same element twice.
+  *
+  * Given nums = [2, 7, 11, 15], target = 9,
+  *
+  * Because nums[0] + nums[1] = 2 + 7 = 9,
+  * return [0, 1].
+  */
+
+/*
+ * We can use a map to store the offset of the target and the current num.
+ * Thus whenever the current num is included in the map, the result occur.
+ */
 object Solution {
   def twoSum(nums: Array[Int], target: Int): Array[Int] = {
-    val result = for {
-      i <- nums.indices
-      j <- i + 1 until nums.length
-      if nums(i) + nums(j) == target
-    } yield (i, j)
-    Array(result(0)._1, result(0)._2)
+    var offsetMap: Map[Int, Int] = Map.empty
+    var i = 0
+    while (i < nums.length && !offsetMap.contains(nums(i))) {
+      offsetMap += target - nums(i) -> i
+      i = i + 1
+    }
+    Array(offsetMap(nums(i)), i)
   }
 }
