@@ -15,7 +15,7 @@
  * We can use a map to store the offset of the target and the current num.
  * Thus whenever the current num is included in the map, the result occur.
  */
-object Solution {
+object TwoSum {
   def twoSum(nums: Array[Int], target: Int): Array[Int] = {
     var offsetMap: Map[Int, Int] = Map.empty
     var i = 0
