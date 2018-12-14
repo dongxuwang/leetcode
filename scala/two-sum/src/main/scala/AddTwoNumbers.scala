@@ -13,42 +13,30 @@
 object AddTwoNumbers {
 
   /*
-   * Use carried to represent if there is a carry at current position.
-   * Store the result just in the first node.
+   * Use only one while and a extra link list.
    */
   def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode = {
     var carry = 0
-    var p = new ListNode()
-    var q = new ListNode()
-    p.next = l1
-    q.next = l2
+    var head: ListNode = new ListNode()
+    var p = l1
+    var q = l2
+    var r = head
 
-    // Two numbers
-    while (p.next != null && q.next != null) {
-      p = p.next
-      q = q.next
-      var cur = carry + p.x + q.x
-      carry = cur / 10
-      p.x = cur % 10
+    while (p != null || q != null) {
+      val px = if (p != null) p.x else 0
+      val qx = if (q != null) q.x else 0
+      val sum = px + qx + carry
+      carry = sum / 10
+      r.next = new ListNode(sum % 10)
+      r = r.next
+      p = if (p != null) p.next else null
+      q = if (q != null) q.next else null
     }
 
-    // Use first node
-    if (q.next != null)
-      p.next = q.next
-
-    // One number
-    while (p.next != null) {
-      p = p.next
-      var cur = carry + p.x
-      carry = cur / 10
-      p.x = cur % 10
-    }
-
-    // The highest position
     if (carry == 1)
-      p.next = new ListNode(1)
+      r.next = new ListNode(1)
 
-    l1
+    head.next
   }
 }
 
